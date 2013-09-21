@@ -14,3 +14,40 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function () {
+
+});
+
+	function add_user(sel){
+
+		// var form_data = $("form").serialize();
+		var user_id = sel;
+
+		$.ajax({
+			type: 'GET',
+			dataType: "json",
+			url: "/users/" + user_id ,
+			// url: "/users" ,
+			// data: { id: user_id },
+			success: function(data) {
+				// alert(data.name + data.address + data.age + data.mobile_phone );
+				// grabbed some data!
+				$(".append_user").append('<td>' + data.id + '</td>');
+				$(".append_user").append('<td>' + data.name + '</td>');
+				$(".append_user").append('<td>' + data.age + '</td>');
+				$(".append_user").append('<td>' + data.address + '</td>');
+				$(".append_user").append('<td>' + data.mobile_phone + '</td>');
+				$(".append_user").append('<td><a href="/users/' + data.id + '>Show</a></td>');
+				$(".append_user").append('<td><a href="/users/' + data.id + '/edit">Edit</a></td>');
+				$(".append_user").append('<td><a data-confirm="Are you sure?" data-method="delete" href="/users/' +
+				 data.id + '" rel="nofollow">Destroy</a></td>');
+
+
+			}
+		});	
+	};
+
+// function merge_form(){
+
+// }
